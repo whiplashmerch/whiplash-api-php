@@ -52,54 +52,37 @@
 
     <div class="container">
 
-<h2>Your 50 most recent orders</h2>
+<h2>Your 50 most recent items</h2>
 <br />
 <?php include 'whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
-$key = '';
+$key = 'FN8sceqpsjtrAzmjrrBM';
 
 if ($key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
 }
 else {
 $api = new WhiplashApi($key);
-$orders = $api->get_orders();
-foreach($orders as $order) {
+$items = $api->get_items();
+foreach($items as $item) {
 	echo "<p>";
 	echo "#";
-	echo $order->order_orig;
+	echo $item->id;
 	echo "<br /><strong>";
-	echo $order->shipping_name;
+	echo $item->sku;
 	echo "</strong><br />";
-	echo $order->shipping_address_1;
+	echo $item->title;
 	echo "<br />";
-	if ($order->shipping_address_2 != "") {
-	echo $order->shipping_address_2;
-	echo "<br />";}
-	echo $order->shipping_city;
-	echo ", ";
-	echo $order->shipping_state;
-	echo " ";
-	echo $order->shipping_zip;
-    echo "<br />";
-	echo $order->email;
-    echo "<br />";
+	echo $item->description;
+	echo "<br />";
+  echo "In Stock: ";
+	echo $item->quantity;
+  echo "<br />";
     echo "</p>";
-    foreach($order->order_items as $order_item){
-    	// Shipped orders contain packaging materials as order_items, for the purposes of the exercise, don't display them.
-    	if ($order_item->packaging != 1) {
-    	echo $order_item->quantity;
-    	echo " x ";
-    	echo $order_item->description;
-    	echo "<br />";}
     	// You can print the raw contents of an object to see its attributes
     	// print_r($order_item);
     }
-    echo "<hr />";
-   	// You can print the raw contents of an object to see its attributes
-    // print_r($order);
-}
 }
 
  ?>
