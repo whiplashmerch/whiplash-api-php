@@ -57,7 +57,7 @@
 <?php include 'whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
-$key = 'FN8sceqpsjtrAzmjrrBM';
+$key = '';
 
 if ($key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
