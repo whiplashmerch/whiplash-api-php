@@ -52,13 +52,6 @@
 
     <div class="container">
 
-<div class="well">
-<p>You can retreive a list of orders and their items in two lines of code.</p>
-<ol>
-	<li><pre>$api = new WhiplashApi('YOUR_API_KEY_HERE');</pre></li>
-	<li><pre>$orders = $api->get_orders();</pre></li>
-</ol>
-</div>
 <h2>Your 50 most recent orders</h2>
 <br />
 <?php include 'whiplash_api.php';
