@@ -42,8 +42,8 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="index.php">Orders</a></li>
-              <li><a href="items.php">Items</a></li>
+              <li><a href="index.php">Orders</a></li>
+              <li class="active"><a href="items.php">Items</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
