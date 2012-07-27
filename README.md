@@ -12,27 +12,29 @@ $api = new WhiplashApi('YOUR API KEY', API VERSION (optional), TEST (optional));
 
 And make requests like so:
 
-(get all items on your account)
+Get all items on your account:
 ```
 $out = $api->get_items();
 foreach($out as $item) {
 	echo $item->id;
 	echo "<br />";
+	print_r($item);
+	echo "<br /><br />"
 }
 ```
 
-(update an order)
+Update an order:
 ```
-$item = $api->update_order(1234, array('shipping_address1' => '123 awesome st.'));
+$order = $api->update_order(1234, array('shipping_address1' => '123 awesome st.'));
 ```
 
-(create an item)
+Create an item:
 ```
-$item = $api->create_item(array('sku' => 'ITEM XXX', 'title' => 'Awesome Item'));
+$item = $api->create_item(array('sku' => 'YOUR ITEM SKU', 'title' => 'Awesome Item'));
 print_r($item);
 ```
 
-(delete an order item)
+Delete an order item:
 ```
 $item = $api->delete_order_item_(1234);
 ```
