@@ -42,7 +42,8 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="index.php">Orders</a></li>
+              <li><a href="index.php">Orders</a></li>
+              <li class="active"><a href="#">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -52,8 +53,9 @@
 
     <div class="container">
 
-<h2>Your 5 most recent orders</h2>
-<br />
+<h2>Creating, Updating &amp; Deleting Order Items</h2>
+Each time this page is loaded, a new order item is added to the most recent order. At the same time, the quantity of all existing items is increased by 1.
+<br /><br />
 <?php include 'whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
@@ -70,22 +72,51 @@ else {
 	// We just grab the last order, and use its order items as our example
 	$orders = $api->get_orders(array('limit' => 1));
 	foreach($orders as $order) {
+		echo "<p>";
+		echo "#";
+		echo $order->id;
+		echo "<br /><strong>";
+		echo $order->shipping_name;
+		echo "</strong><br />";
+		echo $order->shipping_address_1;
+		echo "<br />";
+		if ($order->shipping_address_2 != "") {
+		echo $order->shipping_address_2;
+		echo "<br />";}
+		echo $order->shipping_city;
+		echo ", ";
+		echo $order->shipping_state;
+		echo " ";
+		echo $order->shipping_zip;
+	    echo "<br />";
+		echo $order->email;
+	    echo "<br />";
+	    echo "</p>";
+		
+		// Create a new order item
+		$items = $api->get_items(array('limit' => 1));
+		foreach($items as $item) {
+			$new_item = $api->create_order_item(array('quantity' => 1, 'item_id' => $item->id, 'order_id' => $order->id));
+			// print_r($new_item);
+
 	    foreach($order->order_items as $order_item){
-				// initial quantity
-				echo "<br />Item Quantity: $order_item->quantity";
+			// Add 1 to the quantity of all existing items
+			$api->update_order_item($order_item->id, array('quantity' => ($order_item->quantity + 1)));
+
+	    	if ($order_item->packaging != 1) {
+			echo "<a href='#'>Delete</a> ";
+	    	echo $order_item->quantity;
+	    	echo " x ";
+	    	echo $order_item->description;
+	    	echo "<br />";}
+
+	    }
+	}
 				
-				// Update it
-				// Refresh the page you'll see the new quantity
-				$api->update_order_item($order_item->id, array('quantity' => 2));
-			}
-			$items = $api->get_items(array('limit' => 1));
-			foreach($items as $item) {
-				$new_item = $api->create_order_item(array('quantity' => 1, 'item_id' => $item->id, 'order_id' => $order->id));
-				print_r($new_item);
+		
 			}
 	}
 
-}
  ?>
 
     </div> <!-- /container -->

@@ -9,7 +9,9 @@ class WhiplashApi
     // Constructor
     public function WhiplashApi($api_key, $api_version='', $test=false) {
 			if ($test == true) {
-				$this->base_url = 'http://testing.whiplashmerch.com/api/';
+				// Migrations need to be run for this to work
+				// $this->base_url = 'http://testing.whiplashmerch.com/api/';
+				$this->base_url = 'localhost:3000/api/';
 			} else {
 				$this->base_url = 'https://www.whiplashmerch.com/api/';
 			}

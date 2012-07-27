@@ -43,6 +43,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="index.php">Orders</a></li>
+              <li><a href="order_items.php">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
           </div><!--/.nav-collapse -->

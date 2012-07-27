@@ -25,16 +25,27 @@ foreach($out as $item) {
 
 Update an order:
 ```
-$order = $api->update_order(1234, array('shipping_address1' => '123 awesome st.'));
+$order = $api->update_order(ORDER ID, array('shipping_address_1' => 'NEW STREET ADDRESS'));
+```
+
+Create an order item:
+```
+$api->create_order_item(array('quantity' => 1, 'item_id' => ITEM ID, 'order_id' => ORDER ID));
+```
+
+Update an order item:
+```
+$api->update_order_item(ORDER ITEM ID, array('quantity' => NEW QUANTITY));
+``
+
+Delete an order item:
+```
+$api->delete_order_item(ORDER ITEM ID);
 ```
 
 Create an item:
 ```
-$item = $api->create_item(array('sku' => 'YOUR ITEM SKU', 'title' => 'Awesome Item'));
+$item = $api->create_item(array('sku' => 'YOUR ITEM SKU', 'title' => 'YOUR ITEM TITLE'));
 print_r($item);
 ```
 
-Delete an order item:
-```
-$item = $api->delete_order_item_(1234);
-```
