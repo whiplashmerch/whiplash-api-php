@@ -57,7 +57,7 @@
 <?php include 'whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
-$api_key = 'mHzexQ996qtqqo2qx4Ls';
+$api_key = '';
 $api_version = ''; // OPTIONAL: Leave this blank to use the most recent API
 $test = true; // OPTIONAL: If test is true, this will use your sandbox account
 
