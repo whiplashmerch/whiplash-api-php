@@ -7,7 +7,7 @@ include 'whiplash_api.php';
 Initialize it with your Whiplash API key:
 
 ```
-$api = new WhiplashApi('YOUR API KEY');
+$api = new WhiplashApi('YOUR API KEY', API VERSION (optional), TEST (optional));
 ````
 
 And make requests like so:

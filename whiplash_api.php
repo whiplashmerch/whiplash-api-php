@@ -2,11 +2,18 @@
 class WhiplashApi
 {
     // property declaration
-		public $base_url = 'http://localhost:3000/api/';
+		// public $base_url = 'http://localhost:3000/api/';
+		public $base_url;
 		public $connection;
 
     // Constructor
-    public function WhiplashApi($api_key, $api_version='') {
+    public function WhiplashApi($api_key, $api_version='', $test=false) {
+			if ($test == true) {
+				$this->base_url = 'http://testing.whiplashmerch.com/api/';
+			} else {
+				$this->base_url = 'https://www.whiplashmerch.com/api/';
+			}
+			
 			$ch = curl_init();
     	// Set headers
 			$headers = array('Content-type: application/json', "X-API-KEY: $api_key");
@@ -22,8 +29,10 @@ class WhiplashApi
 		// Basic REST functions
 		public function get($path, $params=array()) {
 			$json_url = $this->base_url . $path; 
+			$json_url .= '?' . http_build_query($params);
 			$ch = $this->connection;
 			curl_setopt($ch, CURLOPT_URL, $json_url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 			$result =  curl_exec($ch); // Getting jSON result string
 			$out = json_decode($result); // Decode the result
 			return $out;

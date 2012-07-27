@@ -57,13 +57,18 @@
 <?php include 'whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
-$key = '';
+$api_key = 'mHzexQ996qtqqo2qx4Ls';
+$api_version = ''; // OPTIONAL: Leave this blank to use the most recent API
+$test = true; // OPTIONAL: If test is true, this will use your sandbox account
 
-if ($key == ''){
+if ($api_key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
 }
 else {
-$api = new WhiplashApi($key);
+$api = new WhiplashApi($api_key, $api_version, $test);
+
+// $item1 = $api->create_item(array('sku' => 'Item 12345', 'title' => 'Awesome item 3!'));
+
 $items = $api->get_items();
 foreach($items as $item) {
 	echo "<p>";
