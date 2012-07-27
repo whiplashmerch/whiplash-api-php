@@ -57,9 +57,10 @@
 Each time this page is loaded, a new order will be created with an example item.
 <br /><br />
 <?php include 'whiplash_api.php';
+
 // Substitute your own Whiplash API Key in the example below:
 
-$api_key = 'FN8sceqpsjtrAzmjrrBM';
+$api_key = '';
 $api_version = ''; // OPTIONAL: Leave this blank to use the most recent API
 $test = true; // OPTIONAL: If test is true, this will use your sandbox account
 
@@ -114,8 +115,6 @@ $order = $api->create_order(array(
     	// print_r($order_item);
     
     echo "<hr />";
-   	// You can print the raw contents of an object to see its attributes
-    // print_r($order);
 }
 
  ?>
