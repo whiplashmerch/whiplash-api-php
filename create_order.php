@@ -60,7 +60,7 @@ Each time this page is loaded, a new order will be created with an example item.
 
 // Substitute your own Whiplash API Key in the example below:
 
-$api_key = '';
+$api_key = 'Hc2BHTn3bcrwyPooyYTP'; // Whiplash sandbox Key
 $api_version = ''; // OPTIONAL: Leave this blank to use the most recent API
 $test = true; // OPTIONAL: If test is true, this will use your sandbox account
 
@@ -68,22 +68,49 @@ if ($api_key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
 }
 else {
-$api = new WhiplashApi($api_key, $api_version, $test);
+	// There are two ways to create an order
+	// 1) Create the order first, then create order items individually (multiple API calls)
+	// 2) Create the order with all of its items (one API call)
 
-$order = $api->create_order(array(
-	'shipping_name' => 'John Doe',
-	'shipping_address_1' => '1 Infinite Loop',
-	'shipping_address_2' => 'APT 6',
-	'shipping_city' => 'Ann Arbor',
-	'shipping_state' => 'MI',
-	'shipping_zip' => '48108',
-	'email' => 'john@doe.com'
-	));
+	$api = new WhiplashApi($api_key, $api_version, $test);
+
+	// // Method #1
+	// $order = $api->create_order(array(
+	// 	'shipping_name' => 'John Doe',
+	// 	'shipping_address_1' => '1 Infinite Loop',
+	// 	'shipping_address_2' => 'APT 6',
+	// 	'shipping_city' => 'Ann Arbor',
+	// 	'shipping_state' => 'MI',
+	// 	'shipping_zip' => '48108',
+	// 	'email' => 'john@doe.com'
+	// ));
+	// 
+	// $items = $api->get_items(array('limit' => 1));
+	// foreach($items as $item) {
+	// 	$new_item = $api->create_order_item(array('quantity' => 1, 'item_id' => $item->id, 'order_id' => $order->id));
+	// }
+
+	// Method #2
+	$order_attributes = array(
+		'shipping_name' => 'John Doe',
+		'shipping_address_1' => '1 Infinite Loop',
+		'shipping_address_2' => 'APT 6',
+		'shipping_city' => 'Ann Arbor',
+		'shipping_state' => 'MI',
+		'shipping_zip' => '48108',
+		'email' => 'john@doe.com',
+		'order_items_attributes' => array()
+	);
 
 	$items = $api->get_items(array('limit' => 1));
+	$i = 0;
 	foreach($items as $item) {
-		$new_item = $api->create_order_item(array('quantity' => 1, 'item_id' => $item->id, 'order_id' => $order->id));
-		}
+		$order_attributes['order_items_attributes'][$i] = array('quantity' => 1, 'item_id' => $item->id);
+		$i += 1;
+	}	
+
+	$order = $api->create_order($order_attributes);	
+		
 	echo "<p>";
 	echo "#";
 	echo $order->id;
@@ -106,15 +133,18 @@ $order = $api->create_order(array(
     echo "<br />";
     echo "</p>";
     	// Shipped orders contain packaging materials as order_items, for the purposes of the exercise, don't display them.
-    	if ($new_item->packaging != 1) {
-    	echo $new_item->quantity;
+	foreach($order->order_items as $order_item) {
+    if ($order_item->packaging != 1) {
+    	echo $order_item->quantity;
     	echo " x ";
-    	echo $new_item->description;
-    	echo "<br />";}
+    	echo $order_item->description;
+    	echo "<br />";
+		}
     	// You can print the raw contents of an object to see its attributes
     	// print_r($order_item);
     
     echo "<hr />";
+	}
 }
 
  ?>
