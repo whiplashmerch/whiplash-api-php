@@ -16,7 +16,7 @@ class WhiplashApi
 			
 			$ch = curl_init();
     	// Set headers
-			$headers = array('Content-type: application/json', "X-API-KEY: $api_key");
+			$headers = array('Content-type: application/json', 'Accept: application/json', "X-API-KEY: $api_key");
 
 			if ($api_version != '') {
 				array_push($headers, "X-API-VERSION: $api_version");
@@ -69,6 +69,8 @@ class WhiplashApi
 			$out = json_decode($result); // Decode the result
 			return $out;
 		}
+		
+		// TODO: add in find by originator functions??
 		
 		/** Item functions **/
 		public function get_items($params=array()) {
