@@ -53,7 +53,7 @@
 
     <div class="container">
 
-<h2>Creating, Updating &amp; Deleting Order Items</h2>
+<h2>Creating &amp; Updating Order Items</h2>
 Each time this page is loaded, a new order item is added to the most recent order. At the same time, the quantity of all existing items is increased by 1.
 <br /><br />
 <?php include 'whiplash_api.php';
@@ -104,7 +104,6 @@ else {
 			$api->update_order_item($order_item->id, array('quantity' => ($order_item->quantity + 1)));
 
 	    	if ($order_item->packaging != 1) {
-			echo "<a href='#'>Delete</a> ";
 	    	echo $order_item->quantity;
 	    	echo " x ";
 	    	echo $order_item->description;
