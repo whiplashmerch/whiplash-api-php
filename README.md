@@ -1,3 +1,5 @@
+Whiplash relies on 3 tables for the majority of calls: Items, Orders, and Order Items. Items are specific inventory items, Orders are requests for a shipment to be sent, and Order Items are what that order should contain.
+
 Use of the Whiplash PHP API is very simple. Just include the `whiplash_api.php` file:
 
 ```
