@@ -81,6 +81,14 @@ class WhiplashApi
 			return $this->get('items/'.$id);
 		}
 		
+		public function get_items_by_sku($sku, $params=array()) {
+			return $this->get('items/sku/'.$sku, $params);
+		}
+		
+		public function get_item_by_originator($id) {
+			return $this->get('items/originator/'.$id);
+		}
+		
 		// This requires a valid ID
 		public function create_item($params=array()) {
 			$p = array();
@@ -116,6 +124,10 @@ class WhiplashApi
 		
 		public function get_order($id) {
 			return $this->get('orders/'.$id);
+		}
+		
+		public function get_order_by_originator($id) {
+			return $this->get('orders/originator/'.$id);
 		}
 		
 		// This requires a valid ID

@@ -46,6 +46,17 @@ $api->delete_order_item(ORDER_ITEM_ID);
 Create an item:
 ```
 $item = $api->create_item(array('sku' => 'YOUR ITEM SKU', 'title' => 'YOUR ITEM TITLE'));
-print_r($item);
 ```
+
+Find items by SKU (NOTE: since multiple items may have the same SKU, this returns an array):
+```
+$api->get_items_by_sku(ITEM_SKU);
+```
+
+Find an order by its ID in your store:
+```
+$api->get_order_by_originator(YOUR_ORDER_ID);
+```
+
+More examples are available in the `examples` folder.
 
