@@ -42,7 +42,7 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="index.php">Orders</a></li>
+              <li><a href="orders.php">Orders</a></li>
               <li class="active"><a href="#">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
@@ -56,7 +56,7 @@
 <h2>Creating &amp; Updating Order Items</h2>
 Each time this page is loaded, a new order item is added to the most recent order. At the same time, the quantity of all existing items is increased by 1.
 <br /><br />
-<?php include 'whiplash_api.php';
+<?php include '../whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
 $api_key = 'Hc2BHTn3bcrwyPooyYTP'; // Whiplash sandbox Key

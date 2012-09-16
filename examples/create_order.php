@@ -42,7 +42,7 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="index.php">Orders</a></li>
+              <li class="active"><a href="orders.php">Orders</a></li>
               <li><a href="order_items.php">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
@@ -56,7 +56,7 @@
 <h2>Creating Orders</h2>
 Each time this page is loaded, a new order will be created with an example item.
 <br /><br />
-<?php include 'whiplash_api.php';
+<?php include '../whiplash_api.php';
 
 // Substitute your own Whiplash API Key in the example below:
 
@@ -105,7 +105,7 @@ else {
 	$items = $api->get_items(array('limit' => 1));
 	$i = 0;
 	foreach($items as $item) {
-		$order_attributes['order_items_attributes'][$i] = array('quantity' => 1, 'item_id' => $item->id);
+		$order_attributes['order_items'][$i] = array('quantity' => 1, 'item_id' => $item->id);
 		$i += 1;
 	}	
 

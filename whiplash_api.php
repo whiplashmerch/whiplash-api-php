@@ -2,7 +2,6 @@
 class WhiplashApi
 {
     // property declaration
-		// public $base_url = 'http://localhost:3000/api/';
 		public $base_url;
 		public $connection;
 
@@ -137,6 +136,10 @@ class WhiplashApi
 				$p['order'] = $params;
 			} else {
 				$p = $params;
+			}
+			if ($p['order']['order_items']) {
+				$p['order']['order_items_attributes'] = $p['order']['order_items'];
+				unset($p['order']['order_items']);
 			}
 			return $this->post('orders', $p);
 		}

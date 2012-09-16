@@ -42,7 +42,7 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="index.php">Orders</a></li>
+              <li><a href="orders.php">Orders</a></li>
               <li><a href="order_items.php">Order Items</a></li>
               <li class="active"><a href="items.php">Items</a></li>
             </ul>
@@ -55,7 +55,7 @@
 
 <h2>Your 50 most recent items</h2>
 <br />
-<?php include 'whiplash_api.php';
+<?php include '../whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
 $api_key = 'Hc2BHTn3bcrwyPooyYTP'; // Whiplash sandbox Key
@@ -65,7 +65,7 @@ $test = true; // OPTIONAL: If test is true, this will use your sandbox account
 if ($api_key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
 }
-else {
+else {	
 $api = new WhiplashApi($api_key, $api_version, $test);
 
 /** Create an item **/
@@ -76,7 +76,6 @@ $api = new WhiplashApi($api_key, $api_version, $test);
 
 /** Find an item by its ID in your store: **/
 //$item = $api->get_item_by_originator(YOUR_ITEM_ID);
-
 $items = $api->get_items();
 foreach($items as $item) {
 	echo "<p>";

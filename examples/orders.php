@@ -42,7 +42,7 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="index.php">Orders</a></li>
+              <li class="active"><a href="orders.php">Orders</a></li>
               <li><a href="order_items.php">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
@@ -55,7 +55,7 @@
 
 <h2>Your 5 most recent orders</h2>
 <br />
-<?php include 'whiplash_api.php';
+<?php include '../whiplash_api.php';
 // Substitute your own Whiplash API Key in the example below:
 
 $api_key = 'Hc2BHTn3bcrwyPooyYTP'; // Whiplash sandbox Key
