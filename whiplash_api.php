@@ -68,9 +68,7 @@ class WhiplashApi
 			$out = json_decode($result); // Decode the result
 			return $out;
 		}
-		
-		// TODO: add in find by originator functions??
-		
+				
 		/** Item functions **/
 		public function get_items($params=array()) {
 			return $this->get('items', $params);
@@ -129,6 +127,10 @@ class WhiplashApi
 			return $this->get('orders/originator/'.$id);
 		}
 		
+		public function get_order_by_status($status) {
+			return $this->get('orders/status/'.$status);
+		}
+		
 		// This requires a valid ID
 		public function create_order($params=array()) {
 			$p = array();
@@ -164,6 +166,10 @@ class WhiplashApi
 		/** OrderItem functions **/		
 		public function get_order_item($id) {
 			return $this->get('order_items/'.$id);
+		}
+		
+		public function get_order_item_by_originator($id) {
+			return $this->get('order_items/originator/'.$id);
 		}
 		
 		// This requires a valid ID
