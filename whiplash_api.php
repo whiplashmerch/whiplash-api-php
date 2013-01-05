@@ -110,7 +110,7 @@ class WhiplashApi
 		
 		// This requires a valid ID
 		public function delete_item($id) {
-			return $this->put('items/'.$id);
+			return $this->delete('items/'.$id);
 		}
 		
 		
@@ -159,7 +159,7 @@ class WhiplashApi
 		
 		// This requires a valid ID
 		public function delete_order($id) {
-			return $this->put('orders/'.$id);
+			return $this->delete('orders/'.$id);
 		}
 		
 		
@@ -196,7 +196,7 @@ class WhiplashApi
 		
 		// This requires a valid ID
 		public function delete_order_item($id) {
-			return $this->put('order_items/'.$id);
+			return $this->delete('order_items/'.$id);
 		}
 }
 ?>
