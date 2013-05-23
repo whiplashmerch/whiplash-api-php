@@ -99,7 +99,7 @@ else {
 		'shipping_state' => 'MI',
 		'shipping_zip' => '48108',
 		'email' => 'john@doe.com',
-    'originator_id' => '123456',
+    // 'originator_id' => '1234532', # Must be unique!
 		'order_items_attributes' => array()
 	);
 
@@ -131,8 +131,8 @@ else {
 	echo $order->shipping_zip;
     echo "<br />";
 	echo $order->email;
-  echo "<br />Originator ID: ";
-  echo $order->originator_id;
+  // echo "<br />Originator ID: ";
+  // echo $order->originator_id;
     echo "<br />";
     echo "</p>";
     	// Shipped orders contain packaging materials as order_items, for the purposes of the exercise, don't display them.
