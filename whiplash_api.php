@@ -91,7 +91,6 @@ class WhiplashApi
 			$p = array();
 
 			if (!array_key_exists('item', $params)) {
-			// if (!$params['item']) {
 				$p['item'] = $params;
 			} else {
 				$p = $params;
@@ -102,7 +101,6 @@ class WhiplashApi
 		// This requires a valid ID
 		public function update_item($id, $params=array()) {
 			$p = array();
-			// if (!$params['item']) {
 			if (!array_key_exists('item', $params)) {
 				$p['item'] = $params;
 			} else {
