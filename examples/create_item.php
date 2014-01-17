@@ -42,8 +42,8 @@
           <a class="brand" href="#">Whiplash PHP Library</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="orders.php">Orders</a></li>
-              <li class="active"><a href="#">Order Items</a></li>
+              <li class="active"><a href="orders.php">Orders</a></li>
+              <li><a href="order_items.php">Order Items</a></li>
               <li><a href="items.php">Items</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -53,10 +53,11 @@
 
     <div class="container">
 
-<h2>Creating &amp; Updating Order Items</h2>
-Each time this page is loaded, a new order item is added to the most recent order. At the same time, the quantity of all existing items is increased by 1.
+<h2>Creating Items</h2>
+Each time this page is loaded, a new item will be created and its resulting object is displayed.
 <br /><br />
 <?php include '../whiplash_api.php';
+
 // Substitute your own Whiplash API Key in the example below:
 
 $api_key = 'Hc2BHTn3bcrwyPooyYTP'; // Whiplash sandbox Key
@@ -67,54 +68,19 @@ if ($api_key == ''){
 	echo 'To get started, enter your Whiplash API Key into the source code of this page. <br /><br /> Once that\'s done, reload.';
 }
 else {
+	// There are two ways to create an order
+	// 1) Create the order first, then create order items individually (multiple API calls)
+	// 2) Create the order with all of its items (one API call)
+
 	$api = new WhiplashApi($api_key, $api_version, $test);
-	
-	// We just grab the last order, and use its order items as our example
-	$orders = $api->get_orders(array('limit' => 1));
-	foreach($orders as $order) {
-		echo "<p>";
-		echo "#";
-		echo $order->id;
-		echo "<br /><strong>";
-		echo $order->shipping_name;
-		echo "</strong><br />";
-		echo $order->shipping_address_1;
-		echo "<br />";
-		if ($order->shipping_address_2 != "") {
-		echo $order->shipping_address_2;
-		echo "<br />";}
-		echo $order->shipping_city;
-		echo ", ";
-		echo $order->shipping_state;
-		echo " ";
-		echo $order->shipping_zip;
-	    echo "<br />";
-		echo $order->email;
-	    echo "<br />";
-	    echo "</p>";
-		
-		// Create a new order item
-		$items = $api->get_items(array('limit' => 1));
-		foreach($items as $item) {
-			$new_item = $api->create_order_item(array('quantity' => 1, 'item_id' => $item->id, 'order_id' => $order->id));
-			// print_r($new_item);
 
-	    foreach($order->order_items as $order_item){
-			// Add 1 to the quantity of all existing items
-			$api->update_order_item($order_item->id, array('quantity' => ($order_item->quantity + 1)));
 
-	    	if ($order_item->packaging != 1) {
-	    	echo $order_item->quantity;
-	    	echo " x ";
-	    	echo $order_item->description;
-	    	echo "<br />";}
+		$new_item = $api->create_item(array('sku' => 'NEW_SKU_111', 'name' => 'Test Item', 'description' => 'One Size' ));
 
-	    }
-	}
-				
-		
-			}
-	}
+    echo "<p>";
+    echo var_dump($new_item);
+    echo "</p>";
+}
 
  ?>
 
@@ -122,6 +88,3 @@ else {
 
   </body>
 </html>
-
-
-
