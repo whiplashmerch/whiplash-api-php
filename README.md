@@ -21,7 +21,7 @@ foreach($out as $item) {
 	echo $item->id;
 	echo "<br />";
 	print_r($item);
-	echo "<br /><br />"
+	echo "<br /><br />";
 }
 ```
 
