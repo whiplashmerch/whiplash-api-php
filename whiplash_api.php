@@ -27,8 +27,11 @@ class WhiplashApi
 
 		// Basic REST functions
 		public function get($path, $params=array()) {
-			$json_url = $this->base_url . $path; 
-			$json_url .= '?' . http_build_query($params);
+			$json_url       = $this->base_url . $path;
+			$query_params   = http_build_query($params);
+			if ($query_params) {
+			    $json_url .= '?' . $query_params;
+			}
 			$ch = $this->connection;
 			curl_setopt($ch, CURLOPT_URL, $json_url);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
@@ -78,6 +81,10 @@ class WhiplashApi
 			return $this->get('items/'.$id);
 		}
 		
+		public function get_item_transactions($id) {
+			return $this->get('items/'.$id.'/transactions');
+		}
+		
 		public function get_items_by_sku($sku, $params=array()) {
 			return $this->get('items/sku/'.$sku, $params);
 		}
@@ -124,6 +131,10 @@ class WhiplashApi
 			return $this->get('orders/'.$id);
 		}
 		
+		public function get_order_items($id) {
+			return $this->get('order_items?order_id='.$id);
+		}
+		
 		public function get_order_by_originator($id) {
 			return $this->get('orders/originator/'.$id);
 		}
@@ -161,12 +172,26 @@ class WhiplashApi
 			return $this->put('orders/'.$id, $p);
 		}
 		
-		// This requires a valid ID
+		// possibly rename this to "cancel_order" since "delete" is not supported by the api
 		public function delete_order($id) {
-			return $this->delete('orders/'.$id);
+			return $this->put('orders/'.$id.'/cancel'); // orders/{order-id}/cancel
+		}
+
+		// possibly rename this to "uncancel_order" since "undelete" is not supported by the api
+		public function undelete_order($id) {
+			return $this->put('orders/'.$id.'/uncancel'); // orders/{order-id}/uncancel
 		}
 		
+		// This requires a valid ID
+		public function pause_order($id) {
+			return $this->put('orders/'.$id.'/pause'); // orders/{order-id}/pause
+		}
 		
+		// This requires a valid ID
+		public function unpause_order($id) {
+			return $this->put('orders/'.$id.'/release'); // orders/{order-id}/release
+		}
+
 		/** OrderItem functions **/		
 		public function get_order_item($id) {
 			return $this->get('order_items/'.$id);
