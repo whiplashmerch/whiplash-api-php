@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * php class for connecting to the Whiplash order API
+ * https://www.whiplashmerch.com/developers/api
+ *
+ *
+*/
+
 class WhiplashApi
 {
     // property declaration
