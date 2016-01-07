@@ -60,5 +60,10 @@ Find an order by its ID in your store:
 $api->get_order_by_originator(YOUR_ORDER_ID);
 ```
 
+Get the total number of orders in your store, since 123, going to the US:
+```
+$api->get_orders_count(array('shipping_country' => 'US', 'since_id' => 123));
+```
+
 More examples are available in the `examples` folder.
 

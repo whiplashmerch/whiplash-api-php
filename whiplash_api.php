@@ -88,6 +88,10 @@ class WhiplashApi
     public function get_items($params=array()) {
         return $this->get('items', $params);
     }
+
+    public function get_items_count($params=array()) {
+        return $this->get('items/count', $params);
+    }
     
     public function get_item($id) {
         return $this->get('items/'.$id);
@@ -137,6 +141,10 @@ class WhiplashApi
     /** Order functions **/
     public function get_orders($params=array()) {
         return $this->get('orders', $params);
+    }
+
+    public function get_orders_count($params=array()) {
+        return $this->get('orders/count', $params);
     }
     
     public function get_order($id) {
