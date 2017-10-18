@@ -2,7 +2,7 @@
 
 /*
  * php class for connecting to the Whiplash order API
- * https://www.whiplashmerch.com/developers/api
+ * https://www.getwhiplash.com/developers/api
  *
  *
 */
@@ -16,9 +16,9 @@ class WhiplashApi
     // Constructor
     public function WhiplashApi($api_key, $api_version='', $test=false) {
         if ($test == true) {
-            $this->base_url = 'http://testing.whiplashmerch.com/api/';
+            $this->base_url = 'https://sandbox.getwhiplash.com/api/';
         } else {
-            $this->base_url = 'https://www.whiplashmerch.com/api/';
+            $this->base_url = 'https://www.getwhiplash.com/api/';
         }
 
         $ch = curl_init();
